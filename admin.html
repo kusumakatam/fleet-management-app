@@ -78,7 +78,7 @@
         <button id="addFleetBtn">Add Fleet</button>
 
     </aside>
-    <main id="fleetcards"></main>
+    <main id="fleetCards"></main>
     <script>
         let fleetData=[];
         function renderCards(data){
@@ -105,7 +105,7 @@
         document.getElementById('addFleetBtn').addEventListener('click',function(){
             const regNo=document.getElementById('regNo').value.trim();
             const category=document.getElementById('category').value;
-            const driverdocument.getElementById('driver').value.trim();
+            const driver=document.getElementById('driver').value.trim();
             const availability=document.getElementById('availability').value;
             if(!regNo || !category || !driver){
                 alert('Please fill all required fields');
@@ -134,7 +134,7 @@
                 renderCards(fleetData);
             
         }
-         function (deleteFleetindex){
+         function deleteFleetindex(){
             if(confirm('Are you sure you want to delete this vehicle?')){
              fleetData.splice(index,1);
                 renderCards(fleetData);
