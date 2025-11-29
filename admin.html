@@ -87,7 +87,7 @@
             data.forEach((fleet,index) => {
                 const card=document.createElement('div');
                 card.className='card';
-                card.innerHTML='
+                card.innerHTML=`
                 <img src="https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png" alt="Vehicle Image">
                 <h4>Reg No: ${fleet.regNo}</h4>
                 <p>Category:${fleet.category}</p>
@@ -97,7 +97,7 @@
                  <button onclick="toggleAvailability(${index})">Change Availability</button>
                   <button onclick="deleteFleet(${index})">Delete Vehicle</button>
 
-                ';
+                `;
                 main.appendChild(card);
             });
 
