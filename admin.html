@@ -35,8 +35,15 @@
         padding:10px;
         width:calc(33%-20px);
         box-shadow: 2px 2px 5px #aaa;
+        
 
     }
+    .card img {
+    width: 410px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
 </style>
 <body>
     <nav>
@@ -134,7 +141,7 @@
                 renderCards(fleetData);
             
         }
-         function deleteFleetindex(){
+         function deleteFleet(index){
             if(confirm('Are you sure you want to delete this vehicle?')){
              fleetData.splice(index,1);
                 renderCards(fleetData);
