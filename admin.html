@@ -78,6 +78,89 @@
         <button id="addFleetBtn">Add Fleet</button>
 
     </aside>
+    <main id="fleetcards"></main>
+    <script>
+        let fleetData=[];
+        function renderCards(data){
+            const main=document.getElementById('fleetCards');
+            main.innerHTML='';
+            data.forEach((fleet,index) => {
+                const card=document.createElement('div');
+                card.className='card';
+                card.innerHTML="
+                <h4>Reg No: ${fleet.regNo}</h4>
+                <p>Category:${fleet.category}</p>
+                <p>Driver:${fleet.driver}</p>
+                <p>Availability:${fleet.availability}</p>
+                <button onclick="updateDriver(${index})">Update Driver</button>
+                 <button onclick="toggleAvailability(${index})">Change Availability</button>
+                  <button onclick="deleteFleet(${index})">Delete Vehicle</button>
+
+                ';
+                main.appendChild(card);
+            });
+
+        }
+        document.getElementById('addFleetBtn').addEventListener('click',function()){
+            const regNo=document.getElementById('regNo').value.trim();
+            const category=document.getElementById('category').value;
+            const driverdocument.getElementById('driver').value.trim();
+            const availability=document.getElementById('availability').value;
+            if(!regNo || !category || !driver){
+                alert('Please fill all required fields');
+                return;
+            }
+            fleetData.push({regNo, category, driver, availability});
+            renderCards(fleetData);
+            document.getElementById('regNo').value='';
+            document.getElementById('category').value='';
+            document.getElementById('driver').value='';
+            document.getElementById('availability').value='Available';
+        
+        });
+        function updateDriver(index){
+            const newDriver=prompt('Enter new driver name:').trim();
+            if(newDriver){
+                fleetData[index].driver=newDriver;
+                renderCards(fleetData);
+
+            }else{
+                alert('Driver name cannot be empty');
+            }
+        }
+        function toggleAvailability(index){
+             fleetData[index].availability=fleetData[index].availability === 'Available' ? 'Unavailable' : 'Available';
+                renderCards(fleetData);
+            
+        }
+         function deleteFleetindex){
+            if(confirm('Are you sure you want to delete this vehicle?')){
+             fleetData.splice(index,1);
+                renderCards(fleetData);
+            
+        }
+    }
+    document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+     document.getElementById('availabilityFilter').addEventListener('change', applyFilters);
+      document.getElementById('clearFilter').addEventListener('click', function(){
+         document.getElementById('categoryFilter').value='All';
+          document.getElementById('availabilityFilter').value='All';
+          renderCards(fleetData);
+      });
+      function applyFilters(){
+         const category=document.getElementById('categoryFilter').value;
+         const availability=document.getElementById('availabilityFilter').value;
+         let filtered=fleetData;
+         if(category!== 'All'){
+            filtered=filtered.filter(f => f.category === category);
+         } 
+          if(availability!== 'All'){
+            filtered=filtered.filter(f => f.availability === availability);
+         } 
+          renderCards(filtered);
+        }
+
+   </script>
     
 </body>
 </html>
